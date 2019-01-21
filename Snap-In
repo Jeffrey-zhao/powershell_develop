@@ -1,0 +1,80 @@
+# Standard Snap-In
+1.PSSnapIn
+    [RunInstaller(true)]
+    public class PSBookChapter2MySnapIn : PSSnapIn
+    {
+        // Name for the PowerShell snap-in.
+        public override string Name
+        {
+            get
+            {
+                return "Wiley.PSProfessional.Chapter2";
+            }
+        }
+
+        // Vendor information for the PowerShell snap-in.
+        public override string Vendor
+        {
+            get
+            {
+                return "Wiley";
+            }
+        }
+
+        // Description of the PowerShell snap-in
+        public override string Description
+        {
+            get
+            {
+                return "This is a sample PowerShell snap-in";
+            }
+        }
+    }
+ 2.Cmdlet [Cmdlet(VerbsCommunications.Write, "Hi")]
+    public class SayHi : Cmdlet
+    {
+        protected override void ProcessRecord()
+        {
+            WriteObject("Hi, World!");
+        }
+    }
+
+    // Code to implement cmdlet Write-Hello
+    [Cmdlet(VerbsCommunications.Write, "Hello")]
+    public class SayHello : Cmdlet
+    {
+        protected override void ProcessRecord()
+        {
+            WriteObject("Hello, World!");
+        }
+    }
+    
+  3. intallUtil.exe *.dll 
+  > this *.dll according to project's debug file name
+  
+  4. get-PSSnapIn -registered
+  > get all registered snapIn
+  
+  5.Add-PSSnapIn Wiley.PSProfessional.Chapter2
+  6.Use all custom cmdlets
+  
+  7.remove snapIn from console
+  >remove-PSSnapIn Wiley.PSProfessional.Chapter2
+  
+  8.installUtil.exe -u *.dll
+  
+  #regitry snap-in by file
+  > it doesn't success,need to check what happens ,if anyone has suggestiong please comment it.
+  
+  Windows Registry Editor Version 5.0.0
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellSnapIns\Wiley.PSProfessional.Chapter2]
+"PowerShellVersion"="1.0"
+"Vendor"="Wiley"
+"Description"="This is a sample Powershell snap-in"
+"Version"="0.0.0.0"
+"ApplicationBase"="D:\\WindowsPowerShell\\ProfessionalPowerShell1\\Chapter2- 1 - Standard Snap-In"
+"AssemblyName"="Chapter2, Version=0.0.0.0, Culture=neutral,PublicKeyToken=null"
+"ModuleName"="D:\\WindowsPowerShell\\ProfessionalPowerShell1\\Chapter2- 1 - Standard Snap-In\\bin\\Debug\\Chapter2.dll"
+  
+  
